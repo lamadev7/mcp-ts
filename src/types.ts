@@ -1,6 +1,19 @@
+import { z } from "zod";
+
+export interface ToolContent {
+    type: "text";
+    text: string;
+    [key: string]: unknown;
+}
+
+export interface ToolResult {
+    content: ToolContent[];
+    [key: string]: unknown;
+}
+
 export interface Tool {
     name: string;
     description: string;
-    parameters: any;
-    handler: (filters?: any, extra?: any) => Promise<any>;
+    parameters: Record<string, z.ZodType<any>>;
+    handler: (args: any, extra?: any) => Promise<ToolResult>;
 }
