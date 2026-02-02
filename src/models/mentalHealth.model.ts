@@ -49,6 +49,6 @@ MentalHealthSchema.index({ patterns: 1 });
 MentalHealthSchema.index({ tag: 1, patterns: 1 });
 
 export const MentalHealthModel = mongoose.model<IMentalHealthDocument>(
-    "MentalHealth",
+    "mentalHealth",
     MentalHealthSchema
 );
