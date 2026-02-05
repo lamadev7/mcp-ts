@@ -1,7 +1,7 @@
 import { Tool } from "../types";
-import { mentalHealthTools } from "./mentalHealth";
+import { conversationSummaryTools } from "./conversationSummary";
 
-
+// Combine all tools
 export const tools: Tool[] = [
-    ...mentalHealthTools,
+    ...conversationSummaryTools,
 ];

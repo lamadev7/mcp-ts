@@ -4,16 +4,20 @@ import express from "express";
 import server from "./server";
 import { connectDatabase } from "./config/database";
 import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
+import apiRoutes from "./routes";
 
 async function startServer() {
-    // Connect to MongoDB first
+    // Connect to PostgreSQL first
     await connectDatabase();
     
     // express instance
     const app = express();
-    app.use(express.json());
+    app.use(express.json({ limit: "10mb" })); // Increased limit for embeddings
     app.use(cors({ origin: "*" }));
     app.use(express.urlencoded({ extended: true }));
+
+    // Mount API routes
+    app.use("/api", apiRoutes);
 
     // SSE transports list
     const transports = new Map<string, SSEServerTransport>();
@@ -29,7 +33,7 @@ async function startServer() {
         await server.connect(transport);
 
         // send client id to client
-        res.write(`data: ${JSON.stringify({ type: 'connected',clientId })}\n\n`);
+        res.write(`data: ${JSON.stringify({ type: 'connected', clientId })}\n\n`);
 
         res.on("close", () => {
             console.log(`🔌 Client ${clientId} disconnected`);
@@ -48,8 +52,17 @@ async function startServer() {
         await transport.handlePostMessage(req, res, req.body);
     });
 
-    app.listen(process.env.PORT, () => {
-        console.log(`🚀 MCP server is running on port ${process.env.PORT || 3000}`);
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`🚀 MCP server is running on port ${PORT}`);
+        console.log(`📡 SSE endpoint: http://localhost:${PORT}/sse`);
+        console.log(`🔗 API endpoints: http://localhost:${PORT}/api`);
+        console.log(`   - Users: /api/users`);
+        console.log(`   - Sessions: /api/sessions`);
+        console.log(`   - Conversations: /api/conversations`);
+        console.log(`   - Summaries: /api/conversation-summaries`);
+        console.log(`   - Auth: /api/auth (register, login, me)`);
+        console.log(`   - Chat: /api/chat (message, history, sessions)`);
     });
 }
 
