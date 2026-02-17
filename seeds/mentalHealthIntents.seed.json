@@ -1,0 +1,167 @@
+[
+    {
+        "tag": "greeting",
+        "patterns": ["Hi", "Hey", "Hello", "Hi there", "Hey there", "Howdy", "Is anyone there?"],
+        "responses": [
+            "Hello there. Tell me how are you feeling today?",
+            "Hi there. What brings you here today?",
+            "Hi there. How are you feeling today?",
+            "Great to see you. How do you feel currently?"
+        ]
+    },
+    {
+        "tag": "goodbye",
+        "patterns": ["Bye", "See you later", "Goodbye", "Take care", "See you"],
+        "responses": [
+            "Take care of yourself. Remember, I'm always here if you need to talk.",
+            "Goodbye! Remember to be kind to yourself today.",
+            "See you soon. Take care and stay strong!"
+        ]
+    },
+    {
+        "tag": "anxiety",
+        "patterns": [
+            "I feel anxious",
+            "I'm feeling anxious",
+            "I have anxiety",
+            "I'm worried",
+            "I feel nervous",
+            "I can't stop worrying",
+            "I'm stressed",
+            "I feel overwhelmed"
+        ],
+        "responses": [
+            "I understand anxiety can be overwhelming. Try taking slow, deep breaths. Would you like to tell me more?",
+            "Anxiety is tough, but you're not alone. Have you tried grounding techniques?",
+            "I hear you. Anxiety can feel very intense. Remember that this feeling will pass.",
+            "It's okay to feel anxious sometimes. Let's work through this together."
+        ]
+    },
+    {
+        "tag": "depression",
+        "patterns": [
+            "I feel depressed",
+            "I'm feeling sad",
+            "I feel empty",
+            "I feel hopeless",
+            "Nothing makes me happy",
+            "I feel worthless",
+            "I feel down"
+        ],
+        "responses": [
+            "I'm sorry you're feeling this way. Reaching out like this is a brave step. Would you like to talk?",
+            "Thank you for sharing. Your feelings are valid. Have you done any small activities that bring comfort?",
+            "I hear you, and you matter. What's one tiny thing that brought you joy recently?",
+            "It takes courage to talk about these feelings. Have you considered speaking with a professional?"
+        ]
+    },
+    {
+        "tag": "stress",
+        "patterns": [
+            "I'm so stressed",
+            "Work is stressing me out",
+            "I have too much to do",
+            "I can't handle the pressure",
+            "I feel burned out"
+        ],
+        "responses": [
+            "Stress can be really draining. What's the most pressing thing on your mind right now?",
+            "I understand you're under a lot of pressure. Have you had a moment to rest today?",
+            "When everything feels overwhelming, try focusing on just one task at a time.",
+            "Burnout is real and valid. What boundaries could you set to protect your energy?"
+        ]
+    },
+    {
+        "tag": "loneliness",
+        "patterns": [
+            "I feel lonely",
+            "I'm so alone",
+            "No one understands me",
+            "I have no friends",
+            "I feel isolated"
+        ],
+        "responses": [
+            "Loneliness can be really painful. Reaching out here shows you're taking steps to connect.",
+            "Feeling alone is hard. Is there anyone you could reach out to today?",
+            "You matter, even when it doesn't feel like it. Would you like to share more?"
+        ]
+    },
+    {
+        "tag": "sleep_issues",
+        "patterns": [
+            "I can't sleep",
+            "I have insomnia",
+            "I'm always tired",
+            "My sleep is terrible",
+            "I have nightmares"
+        ],
+        "responses": [
+            "Sleep issues can really affect mental health. Have you tried a calming bedtime routine?",
+            "I'm sorry you're struggling with sleep. Have you tried writing down your thoughts before bed?",
+            "Rest is so important. How long has this been going on?"
+        ]
+    },
+    {
+        "tag": "self_esteem",
+        "patterns": [
+            "I hate myself",
+            "I'm not good enough",
+            "I'm a failure",
+            "I can't do anything right",
+            "Everyone is better than me"
+        ],
+        "responses": [
+            "These thoughts aren't facts, even though they feel real. What would you say to a friend who felt this way?",
+            "You deserve compassion, especially from yourself. What's one thing you did well recently?",
+            "You matter and have worth. Would you like to explore where these feelings come from?"
+        ]
+    },
+    {
+        "tag": "anger",
+        "patterns": [
+            "I'm so angry",
+            "I feel rage",
+            "I can't control my anger",
+            "Everything makes me mad",
+            "I'm furious"
+        ],
+        "responses": [
+            "Anger is a valid emotion. Before we explore it, try taking a few deep breaths. What triggered this?",
+            "Sometimes anger masks other emotions like hurt. What's underneath your anger?",
+            "Your anger is telling you something. What boundary might have been crossed?"
+        ]
+    },
+    {
+        "tag": "gratitude",
+        "patterns": ["Thank you", "Thanks for listening", "I appreciate this", "This helps"],
+        "responses": [
+            "You're welcome. I'm glad I could be here for you.",
+            "It's my pleasure. You're doing great by taking care of your mental health.",
+            "Thank you for trusting me. I'm always here when you need to talk."
+        ]
+    },
+    {
+        "tag": "crisis",
+        "patterns": [
+            "I want to hurt myself",
+            "I want to die",
+            "I'm thinking about suicide",
+            "I don't want to live",
+            "I want to end it all"
+        ],
+        "responses": [
+            "I'm concerned about what you're sharing. Please reach out to a crisis helpline immediately - US: 988. You matter.",
+            "Thank you for trusting me. Please call a crisis line: US: 988, UK: 116 123. You don't have to face this alone.",
+            "Please reach out for immediate help - call 988 (US) or your local emergency services. Your life has value."
+        ]
+    },
+    {
+        "tag": "unknown",
+        "patterns": [],
+        "responses": [
+            "I'm here to listen. Could you tell me more about how you're feeling?",
+            "I want to understand better. Can you describe what's on your mind?",
+            "Thank you for reaching out. What's been going on with you lately?"
+        ]
+    }
+]

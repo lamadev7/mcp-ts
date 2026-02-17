@@ -1,0 +1,7 @@
+node_modules
+dist
+.env
+
+# Prevent accidental .js files in src (use dist/ for compiled output)
+src/**/*.js
+src/*.js
