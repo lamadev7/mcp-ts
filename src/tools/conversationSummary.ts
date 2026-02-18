@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { GoogleGenAI } from "@google/genai";
 import { Tool, ToolResult } from "../types";
 import { TextResponseBuilder } from "../utils";
 import { conversationSummaryService, conversationService } from "../services";
@@ -43,12 +44,12 @@ export const searchConversationSummaries: Tool = {
         higher threshold (0.8+) for precise matches.
     `,
     parameters: {
-        patientMessage: z.string().describe(`
+        patientMessage: z.string().optional().describe(`
             The patient's current message to search for similar past contexts.
             Pass the exact message text for accurate semantic matching.
             Example: "I've been feeling anxious about work again"
         `),
-        queryEmbedding: z.array(z.number()).describe(`
+        queryEmbedding: z.array(z.number()).optional().describe(`
             The 1536-dimensional embedding vector of the patient's message.
             This must be pre-computed using an embedding model (e.g., OpenAI text-embedding-ada-002).
             Required for semantic similarity search.
@@ -76,7 +77,7 @@ export const searchConversationSummaries: Tool = {
         similarityThreshold?: number;
         includeConversations?: boolean;
     }): Promise<ToolResult> => {
-        const {
+        let {
             patientMessage,
             queryEmbedding,
             limit = 5,
@@ -85,18 +86,21 @@ export const searchConversationSummaries: Tool = {
         } = params;
 
         // Validate inputs
-        if (!patientMessage?.trim()) {
+        if(!patientMessage?.trim() && !queryEmbedding?.length) {
             return TextResponseBuilder({
                 success: false,
-                error: "Patient message is required",
+                error: "Either patientMessage or queryEmbedding is required",
             });
         }
 
-        if (!queryEmbedding || !Array.isArray(queryEmbedding) || queryEmbedding.length === 0) {
-            return TextResponseBuilder({
-                success: false,
-                error: "Query embedding (array of numbers) is required",
+        if(!queryEmbedding?.length && patientMessage?.trim()) {
+            const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY });
+            const response = await ai.models.embedContent({
+                model: "gemini-embedding-001",
+                contents: patientMessage,
+                config: { outputDimensionality: 1536 },
             });
+            queryEmbedding = response.embeddings?.[0]?.values ?? [];
         }
 
         // Validate embedding dimension (should be 1536 for most models)
